@@ -1,6 +1,6 @@
 import React from "react";
 import "./MyStory.css";
-import storyImage from "../../../Images/IMG16.jpg"; // Update with your real image path
+import storyImage from "../../../Images/fff.png"; // Update with your real image path
 
 const MyStory = () => {
   return (

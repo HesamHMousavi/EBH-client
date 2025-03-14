@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
 import { ClientContext } from "../../../Context/ClientState";
-import img from "../../../Images/PIC6.jpg"; // Default image if needed
+import img from "../../../Images/fff.png"; // Default image if needed
 import "./CheckoutForm.css";
 
 function CheckoutForm() {

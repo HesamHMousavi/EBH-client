@@ -1,8 +1,8 @@
 import React from "react";
 import "./ServiceFeatures.css";
-import img1 from "../../../Images/PIC1.jpg";
-import img2 from "../../../Images/PIC6.jpg";
-import img3 from "../../../Images/PIC7.jpg";
+import img1 from "../../../Images/fff.png";
+import img2 from "../../../Images/fff.png";
+import img3 from "../../../Images/fff.png";
 
 const ServiceFeatures = () => {
   const features = [

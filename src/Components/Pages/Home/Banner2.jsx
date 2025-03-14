@@ -1,6 +1,6 @@
 import React from "react";
 import "./Banner2.css";
-import flowersImage from "../../../Images/PIC5.jpg"; // Add this image in your assets folder
+import flowersImage from "../../../Images/fff.png"; // Add this image in your assets folder
 
 const Banner2 = () => {
   return (
