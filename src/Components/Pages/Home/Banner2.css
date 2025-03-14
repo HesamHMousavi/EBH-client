@@ -1,0 +1,75 @@
+.banner2 {
+    /* position: relative; */
+    /* height: 60vh; */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px ;
+    height: 500px;
+    border-radius: 8px;
+}
+
+.banner2-overlay {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1500px;
+    height: 100%;
+    padding: 20px;
+    color: white;
+}
+
+.banner2-left h1 {
+    font-size: clamp(3.5rem, 4vw, 7rem);
+    font-weight:bold;
+    margin: 0;
+    max-width: 500px;
+}
+
+.banner2-right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.banner2-button {
+    background-color:var(--primary);
+    border: 1px solid var(--pink-light);
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: var(--pink);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    min-width: 200px;
+}
+
+.banner2-button:hover {
+    background-color: var(--pink-light);
+    color: var(--text);
+    /* transform: translateY(-3px); */
+}
+
+/* Responsive - stack content for smaller screens */
+@media (max-width: 768px) {
+    .banner2-overlay {
+        flex-direction: column;
+        justify-content: space-evenly;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .banner2-left h1 {
+        font-size: 3rem;
+    }
+
+
+    .banner2-button {
+        width: 80%;
+        max-width: 300px;
+    }
+}

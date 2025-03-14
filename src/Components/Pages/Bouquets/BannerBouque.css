@@ -1,0 +1,49 @@
+.banner-bouque-container {
+    width: 100%;
+    padding: 50px 5%;
+    text-align: center;
+    background-color: white;
+    margin-top: 160px;
+}
+
+.banner-bouque-title {
+    font-size: clamp(2rem, 5vw, 3rem); /* Scales with screen size */
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.banner-bouque-description {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: clamp(1rem, 1.2vw, 1.1rem); /* Slightly scales text */
+    color: #5a4a42;
+    line-height: 1.6;
+}
+
+/* Responsive adjustments for smaller devices */
+@media (max-width: 768px) {
+    .banner-bouque-container {
+        margin-top: 100px;
+        padding: 30px 20px;
+    }
+
+    .banner-bouque-title {
+        font-size: 2rem;
+    }
+
+    .banner-bouque-description {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-bouque-title {
+        font-size: 1.8rem;
+    }
+
+    .banner-bouque-description {
+        font-size: 0.95rem;
+    }
+}

@@ -1,0 +1,60 @@
+.banner {
+  position: relative;
+  width: 100%;
+  height: 50vh; /* Adjust height if needed */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 160px;
+  height: 1000px;
+}
+
+.banner-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for contrast */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  padding: 0 30px;
+}
+
+.banner-text {
+  color: white;
+  font-size: clamp(1.5rem, 5vw, 4rem);
+  font-weight: bold;
+  max-width: 600px;
+  font-family: "Playfair Display", serif;;
+  margin: 5rem 0;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    margin-top: 110px;
+    height: 70vh;
+  }
+
+  .banner-text {
+    text-align: center;
+    font-size: 5rem;
+  }
+  .banner-overlay {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    height: 70vh;
+  }
+
+  .banner-text {
+    text-align: center;
+    font-size: 3.5rem;
+    color: var(--primary);
+  }
+}

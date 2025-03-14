@@ -1,0 +1,166 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+/* Container styling */
+.container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 160px;
+}
+
+/* Product Grid */
+.product-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap; /* Makes it responsive */
+}
+
+.product-card {
+    width: 48%; /* Adjust for larger screens */
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 700px;
+}
+
+/* Ensuring image height is dynamic */
+@media (max-width: 1024px) {
+    .product-card img {
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        width: 100%; /* Full width for mobile */
+    }
+
+    .product-card img {
+        height: 400px;
+    }
+}
+
+.product-info {
+    padding: 15px;
+}
+
+.product-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 1.4vw, 1.4rem);
+    font-weight: 200;
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.product-info p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 200;
+    color: #666;
+    margin: 0 0 10px;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    color: #777;
+    margin: 0;
+}
+
+/* Order Section */
+.order-info {
+    margin: 4rem 0;
+    text-align: center;
+}
+
+.order-section-0 {
+    background-color: white;
+    text-align: center;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding-top: 3rem;
+}
+
+.order-section-0 h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.order-section-0 p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.order-section-0 img {
+    object-fit: cover;
+    width: 100%;
+    max-height: 1000px;
+}
+
+/* Adjust image height for smaller screens */
+@media (max-width: 1024px) {
+    .order-section-0 img {
+        max-height: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .order-section-0 img {
+        max-height: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    .order-section-0 img {
+        max-height: 300px;
+    }
+}
+
+.order-section strong {
+    font-size: 16px;
+    color: #000;
+}
+
+.phone-number {
+    font-weight: bold;
+    color: #000;
+    font-size: 18px;
+    display: block;
+    margin-top: 10px;
+}
+
+.phone-number a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* Make text sizes dynamic */
+@media (max-width: 768px) {
+    .order-section-0 h2 {
+        font-size: 18px;
+    }
+
+    .order-section-0 p {
+        font-size: 13px;
+    }
+
+    .phone-number {
+        font-size: 16px;
+    }
+}

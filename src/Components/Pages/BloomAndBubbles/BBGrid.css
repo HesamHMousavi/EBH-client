@@ -1,0 +1,122 @@
+.bouquet-grid-container {
+    padding: 30px 20px;
+    background-color: white;
+}
+
+.bouquet-grid-2 {
+    display: flex !important;
+    /* grid-template-columns: repeat(1, 1fr); */
+    /* background-color: red; */
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.bouquet-card-2{
+    width: 50%;
+    border: 1px solid #e5e5e5;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.bouquet-image-2 {
+    width: 100%;
+    height: 800px;
+    object-fit: cover;
+}
+
+/* Info section (text + button container) */
+.bouquet-info {
+    padding: 15px;
+    text-align: left;
+}
+
+/* Product Name */
+.bouquet-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 1.4vw, 1.4rem);
+    font-weight: 200;
+    margin: 0 0 5px;
+    color: #777;
+}
+
+/* Product Description */
+.bouquet-description {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 200;
+    color: #666;
+    margin: 0 0 10px;
+}
+
+/* Button + Price Container */
+.btn-con {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding: 5px 0;
+}
+
+/* Button */
+.btn-con button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    background-color: transparent;
+    color: #222;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-con button:hover {
+    background-color: black;
+    color: white;
+}
+
+/* Price Text */
+.bouquet-price-2 {
+    font-size: 1.1rem;
+    color: #777;
+    margin: 0;
+}
+
+/* Tablet View */
+@media (max-width: 992px) {
+
+    .bouquet-image {
+        height: 250px;
+    }
+
+    .btn-con button {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 600px) {
+
+    .bouquet-image {
+        height: 200px;
+    }
+
+    .bouquet-info {
+        padding: 12px;
+    }
+
+    .bouquet-name {
+        font-size: 1.2rem;
+    }
+
+    .bouquet-description {
+        font-size: 0.9rem;
+    }
+
+    .btn-con button {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+}

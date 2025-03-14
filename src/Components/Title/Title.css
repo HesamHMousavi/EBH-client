@@ -1,0 +1,36 @@
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem auto; /* Auto centers the container */
+    text-align: center;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    max-width: 90%; /* Prevents it from stretching too much */
+}
+
+.title h1 {
+    font-family: "Display Fair", sans-serif;
+    font-size: 3rem; /* Default size */
+    line-height: 1.2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .title {
+        margin: 2rem auto; /* Reduce margin for smaller screens */
+    }
+
+    .title h1 {
+        font-size: 2.5rem !important; /* Reduce font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        margin: 1rem auto; /* Even smaller margin */
+    }
+
+    .title h1 {
+        font-size: 2rem !important; /* Smaller text on mobile */
+    }
+}

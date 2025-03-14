@@ -1,0 +1,136 @@
+.contact-section-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 0;
+    background-color: white;
+    /* width: 100%; */
+    max-width: 1200px;
+    margin: 2rem auto;
+    border: 1px solid #e5e5e5;
+}
+
+.contact-info {
+    background-color: #f7f4f0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.contact-info-title {
+    color: var(--text);
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.contact-info-item h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #5a4a42;
+}
+
+.contact-info-item p {
+    margin: 5px 0 0;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    color: #5a4a42;
+    margin-top: 2px;
+}
+
+/* Contact Form */
+.contact-form {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+}
+
+.contact-form-title {
+    color: var(--text);
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.contact-section-wrapper form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+.form-row input {
+    flex: 1;
+}
+
+.contact-section-wrapper input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+.contact-section-wrapper input:focus, textarea:focus {
+    border-color: var(--pink); /* Or any color you want */
+    outline: none; /* Optional: removes the default blue outline */
+}
+
+.contact-section-wrapper textarea {
+    resize: none;
+    height: 120px;
+}
+
+.contact-section-wrapper button {
+    align-self: flex-start;
+    padding: 10px 20px;
+    background-color: var(--text);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 200;
+    transition: background-color 0.3s ease;
+}
+
+.contact-section-wrapper button:hover {
+    background-color: var(--text-2);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .contact-section-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        text-align: start;
+        align-items: flex-start;
+    }
+
+    .contact-info-item {
+        justify-content: center;
+        text-align: left;
+    }
+
+    form {
+        width: 100%;
+    }
+}

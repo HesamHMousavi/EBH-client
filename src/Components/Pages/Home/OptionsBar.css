@@ -1,0 +1,51 @@
+.delivery-options-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: #f7f4f0;
+  padding: 20px 5%;
+  min-height: 200px;
+  flex-wrap: wrap; 
+}
+
+.delivery-option-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  background-color: white;
+  border: 1px solid #b08e79;
+  color: #333;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-weight: 100;
+  cursor: pointer;
+}
+
+.delivery-option-icon {
+  color: #f4c2c2;
+}
+
+/* Primary button gets special color */
+.delivery-primary-button {
+  background-color: #f4c2c2;
+  border: none;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  .delivery-options-bar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .delivery-option-button,
+  .delivery-primary-button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}

@@ -1,0 +1,213 @@
+.max-width{
+    margin: 0 auto;
+    max-width: 1400px;
+}
+.bouquet-container {
+    display: flex;
+    gap: 30px;
+    padding: 50px 5%;
+    background-color: white;
+    margin-top: 160px;
+}
+
+.bouquet-images {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bouquet-main-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.bouquet-thumbnails {
+    display: flex;
+    gap: 10px;
+}
+
+.bouquet-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    transition: transform 0.2s ease;
+}
+
+.bouquet-thumbnail:hover {
+    transform: scale(1.05);
+}
+
+/* Details Section */
+.bouquet-details {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bouquet-title {
+    font-size: 1.8rem;
+    font-weight: 300;
+    font-family: "Display fair";
+    color: black;
+}
+
+.bouquet-price {
+    /* font-family: "Display fair"; */
+    font-weight: 200;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.bouquet-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #5a4a42;
+    font-size: 0.95rem;
+}
+
+.bouquet-features li {
+    color: black;
+    font-weight: 200;
+    margin-bottom: 5px;
+}
+
+/* Options Section */
+.bouquet-option {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.option-label {
+    margin: 10px 0;
+    font-weight: 300;
+    color: black;
+}
+
+.option-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.option-button {
+    padding: 10px;
+    height: 100px;
+    background-color: white;
+    color: var(--text);
+    border: 1px solid #af8e98;
+    cursor: pointer;
+    text-align: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    display: flex;
+    font-weight: 200 ;
+    font-family: "Public Sans", sans-serif;
+    justify-content: center;
+    align-items: center;
+    /* min-width: 200px; */
+}
+
+.option-button.selected {
+    background-color:var(--pink);
+    color: white;
+}
+
+.option-input, .option-select {
+    outline: none;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+}
+
+/* Notes Section */
+.bouquet-note textarea {
+    font-family: 'public sans';
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 200px;
+    max-height: 300px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+/* Add to Cart Button */
+.add-to-cart {
+    font-family: 'public sans';
+    padding: 12px 24px;
+    background-color: transparent;
+    color: black;
+    border: 1px solid var(--text);
+    border-radius: 0;;
+    font-size: 1rem ;
+    font-weight: 300 ;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.add-to-cart:hover{
+    background-color: black;
+    color: white;
+}
+
+.error-text{
+    text-align: end;
+    font-size: 13px;
+    color:  #c10000;
+    font-weight: 200;
+}
+.error-border {
+    border: 1px solid #ff9595 !important;
+    outline: none;
+  }
+  
+  .option-button.error-border {
+    background-color: rgba(255, 0, 0, 0.2);
+    border: 1px solid #ff9595;
+  }
+  
+  .option-input.error-border {
+    border: 1px solid #ff9595;
+  }
+  
+
+/* Responsive Layout */
+@media (max-width: 992px) {
+    .bouquet-container {
+        flex-direction: column;
+        padding: 30px 5%;
+    }
+
+    .bouquet-images, .bouquet-details {
+        width: 100%;
+    }
+
+    .bouquet-main-image {
+        height: 400px;
+    }
+
+    .bouquet-thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 600px) {
+    .bouquet-main-image {
+        height: 300px;
+    }
+
+    .option-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
