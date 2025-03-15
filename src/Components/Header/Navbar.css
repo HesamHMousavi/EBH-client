@@ -10,7 +10,6 @@
     background: transparent;
     transition: all 0.3s ease-in-out;
     z-index: 1000;
-    background-color: var(--primary);
   }
   
   .header::after {
@@ -28,8 +27,8 @@
   }
   
   .header.scrolled {
-    background: #1f2a38;
-    background: var(--primary);
+    background: white;
+    /* background: var(--primary); */
     padding: 10px 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   }
@@ -66,7 +65,7 @@
   }
   
   .nav a:hover {
-    background:var(--primary);
+    background:#ffeaf3;
     backdrop-filter: blur(2px); 
     -webkit-backdrop-filter: blur(2px);
   }
@@ -109,7 +108,7 @@
       left: 0;
       width: 100%;
       background: #1f2a38;
-      background: var(--primary);
+      background: white;
       display: flex;
       flex-direction: column;
       align-items: center;

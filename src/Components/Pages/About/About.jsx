@@ -7,6 +7,7 @@ import MyStory from "./MyStory";
 import ContactBanner from "./ContactBanner";
 import ContactSection from "../Home/ContactSection";
 import TestimonialSlider from "../Home/TestimonialSlider";
+import Sections from "./Section";
 
 const About = () => {
   return (
@@ -16,8 +17,9 @@ const About = () => {
       <MyStory />
       <ServiceFeatures />
       <ContactBanner />
-      <ContactSection />
-      <TestimonialSlider />
+      {/* <ContactSection /> */}
+      {/* <TestimonialSlider /> */}
+      <Sections />
       <Footer />
     </div>
   );

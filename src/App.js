@@ -11,7 +11,9 @@ import HB from "./Components/Pages/HB/HB";
 import ScrollTop from "./ScrollTop";
 import Alert from "./Components/Alert/Alert";
 import Funeral from "./Components/Pages/Funeral/Funral";
-import CookieConsent from "./Components/CookieConsent/CookieConsent"
+import CookieConsent from "./Components/CookieConsent/CookieConsent";
+import Success from "./Components/Pages/Success/Success";
+import Cancelled from "./Components/Pages/Cancelled/Cancelled";
 
 const App = () => {
   return (
@@ -27,8 +29,10 @@ const App = () => {
         <Route path="/hatboxes" element={<HB />} />
         <Route path="/about" element={<About />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/cancel" element={<Cancelled />} />
       </Routes>
-      <CookieConsent/>
+      <CookieConsent />
       <Cart />
       <Alert />
     </Router>

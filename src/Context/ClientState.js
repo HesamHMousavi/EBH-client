@@ -19,7 +19,8 @@ import {
 
 export const ClientContext = createContext();
 
-axios.defaults.baseURL = "http://localhost:5001/";
+axios.defaults.baseURL = "https://api.fleure.co.uk";
+// axios.defaults.baseURL = "http://localhost:5001/";
 
 export const ClientState = (props) => {
   const initialState = {
@@ -124,8 +125,17 @@ export const ClientState = (props) => {
     };
     try {
       const res = await axios.post(`/api/orders`, order);
-      dispatch({ type: SET_CART });
-      localStorage.setItem("cart", JSON.stringify(""));
+      // dispatch({ type: SET_CART });
+      // localStorage.setItem("cart", JSON.stringify(""));
+
+      if (res.data.success) {
+        window.location.href = res.data.sessionUrl;
+        setTimeout(() => {
+          // window.location.reload();
+        }, 100);
+      } else {
+        SetAlert("Something Went Wrong", "error");
+      }
       return res.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -137,6 +147,10 @@ export const ClientState = (props) => {
         SetAlert(error.message, "error");
       }
     }
+  };
+
+  const EmptyCart = () => {
+    dispatch({ type: SET_CART });
   };
 
   return (
@@ -154,6 +168,7 @@ export const ClientState = (props) => {
         CreateOrder: CreateOrder,
         prodLoading: state.prodLoading,
         SetLoading: SetLoading,
+        EmptyCart: EmptyCart,
       }}
     >
       {props.children}

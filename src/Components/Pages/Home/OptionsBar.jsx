@@ -13,9 +13,6 @@ const OptionsBar = () => {
         <FaHome className="delivery-option-icon" />
         Collection
       </div>
-      <div className="delivery-option-button delivery-primary-button">
-        View Our Products
-      </div>
     </div>
   );
 };

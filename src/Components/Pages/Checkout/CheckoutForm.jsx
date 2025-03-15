@@ -6,6 +6,12 @@ import "./CheckoutForm.css";
 
 function CheckoutForm() {
   const { Cart, DeleteCart, SetAlert, CreateOrder } = useContext(ClientContext);
+  const getTomorrow = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1); // Move to next day
+    return tomorrow.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+  };
+  const [checkLoading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
   const [deliveryMethod, setDeliveryMethod] = useState("");
   const [subtotal, setSubtotal] = useState(0);
@@ -17,7 +23,7 @@ function CheckoutForm() {
   const [missingDelivery, setMissingDelivery] = useState(false);
   const [shippingDetails, setShippingDetails] = useState({
     type: "",
-    date: null,
+    date: getTomorrow(),
   });
 
   const [formFields, setFormFields] = useState({
@@ -134,7 +140,7 @@ function CheckoutForm() {
     return str.toString().charAt(0).toUpperCase() + str.toString().slice(1);
   };
 
-  const handleConfirmOrder = () => {
+  const handleConfirmOrder = async () => {
     if (!validateInputs()) {
       SetAlert(
         "Please fill in all required fields and select a delivery method.",
@@ -145,13 +151,14 @@ function CheckoutForm() {
     const sanitizedProducts = Cart.map(
       ({ selectedOptions, id, price, name, image, ...rest }) => rest
     );
-    console.log(sanitizedProducts);
-    CreateOrder({
+    setLoading(true);
+    await CreateOrder({
       ...formFields,
       items: sanitizedProducts,
       ...shippingDetails,
     });
-    SetAlert("Order Confirmed! Thank you for your purchase.");
+    setLoading(false);
+    // SetAlert("Order Confirmed! Thank you for your purchase.");
   };
 
   if (Cart.length < 1)
@@ -323,9 +330,15 @@ function CheckoutForm() {
           </p>
         </div>
 
-        <button className="confirm-btn" onClick={handleConfirmOrder}>
-          Confirm order
-        </button>
+        {checkLoading ? (
+          <div className="btn-loader">
+            <span className="loader"></span>
+          </div>
+        ) : (
+          <button className="confirm-btn" onClick={handleConfirmOrder}>
+            Confirm order
+          </button>
+        )}
       </div>
     </div>
   );

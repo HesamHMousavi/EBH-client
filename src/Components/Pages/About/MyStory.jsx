@@ -1,6 +1,5 @@
 import React from "react";
 import "./MyStory.css";
-import storyImage from "../../../Images/fff.png"; // Update with your real image path
 
 const MyStory = () => {
   return (
@@ -8,29 +7,38 @@ const MyStory = () => {
       <div className="my-story-content">
         <h2 className="my-story-title">My Story</h2>
         <p className="my-story-text">
-          Fleurè started from a simple love for creativity and celebrations. At
-          just 16, I began styling balloons, turning a passion into a business.
-          Since then, I’ve had the privilege of helping people across Bradford
-          and beyond transform their events with unique, high-quality décor.
+          Welcome to <strong>Fleurè</strong>, a brand born from passion,
+          creativity and a dedication to excellence. My name is Haseeb, and I’ve
+          been fortunate enough to turn my childhood passion into a thriving
+          business. At just 12 years old, I started with balloon styling, and
+          over the years, I expanded my services to fill-scale event planning.
+          With over 6 years of experience in event management, florists, and
+          personalised balloon creations. I know it was time to give my two
+          passions - events and florals - the individual attention they
+          deserved.
         </p>
         <p className="my-story-text">
-          My journey has even been featured in the Telegraph & Argus,
-          highlighting my dedication to creating magical moments.
+          Previously, I ran both my event planning and floral services under the
+          same page, <strong> Events by Haseeb</strong>, but I realised each
+          deserved its own focus and platform. That’s when{" "}
+          <strong>Fleurè</strong> was born. <strong>Fleurè</strong> is dedicated
+          to providing bespoke flower bouquets and personalised balloon
+          services, available nationwide across the UK, while my event planning
+          continues through <strong> Events by Haseeb</strong>, where I deliver
+          unforgettable event experiences.
         </p>
         <p className="my-story-text">
-          I specialise in bespoke balloon designs, elegant event décor, and
-          thoughtful gift sets to make every occasion special. Whether you’re
-          looking for bold balloon arches, personalised bouquets, or full event
-          styling, I’ll bring your vision to life with care and creativity.
+          This is just the beginning of <strong>Fleurè</strong>, and I cannot
+          wait to see where the journey takes me. Every opportunity, connection,
+          and experience will help shape the future of <strong>Fleurè</strong>{" "}
+          as I continue to grow and expand. Along the way, I’ve been honoured to
+          be featured in local newspapers and was the finalist for Youngest
+          Entrepreneur of the Year 2022.
         </p>
-      </div>
-
-      <div className="my-story-image-wrapper">
-        <img
-          src={storyImage}
-          alt="My Story Feature"
-          className="my-story-image"
-        />
+        <p className="my-story-text">
+          Thank you for being part of this journey. Your support means the
+          world, and I’m excited to share what’s next with you!
+        </p>
       </div>
     </div>
   );

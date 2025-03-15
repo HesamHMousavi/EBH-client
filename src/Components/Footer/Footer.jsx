@@ -15,12 +15,12 @@ const Footer = () => {
     <footer className="footer-container">
       <div className="footer-content">
         {/* Logo Section */}
-        <div className="footer-logo">
+        <div className="footer-section footer-logo">
           <img src={logo} alt="EventsByHaseeb Logo" />
         </div>
 
         {/* Contact Info Section */}
-        <div className="footer-contact">
+        <div className="footer-section footer-contact">
           <h4>Contact Us</h4>
           <p>
             <FaPhoneAlt /> 07585 626 475
@@ -29,34 +29,32 @@ const Footer = () => {
             <FaEnvelope /> Eventsbyhaseeb@gmail.com
           </p>
           <div className="footer-socials">
-            <FaInstagram size={30} color="var(--text)" />
-            <FaTiktok size={30} color="var(--text)" />
-            <FaSnapchatGhost size={30} color="var(--text)" />
-          </div>
-        </div>
-
-        {/* Quick Links Section */}
-        <div className="footer-links">
-          <h4>Quick Links</h4>
-          <div className="links-grid">
-            <div className="links-column">
-              <p>Homes</p>
-              <p>Bouquet</p>
-              <p>Balloons</p>
-            </div>
-            <div className="links-column">
-              <p>About Us</p>
-              <p>Gift Sets</p>
-              <p>Contact Us</p>
-            </div>
+            <FaInstagram
+              className="footer-location-icon"
+              size={30}
+              color="#777"
+              onClick={() =>
+                window.open(
+                  "https://www.instagram.com/fleureuk/?igsh=cjNvbXM2ZGs5cWJ3#",
+                  "_blank"
+                )
+              }
+            />
+            {/* <FaTiktok className="footer-location-icon" size={30} color="#777" />
+            <FaSnapchatGhost
+              className="footer-location-icon"
+              size={30}
+              color="#777"
+            /> */}
           </div>
         </div>
 
         {/* Location Section */}
-        <div className="footer-location">
+        <div className="footer-section footer-location">
           <FaMapMarkerAlt
             className="footer-location-icon"
-            color="var(--text)"
+            size={25}
+            color="#777"
           />
           <p>
             40 Hollybank Road

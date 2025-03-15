@@ -10,7 +10,8 @@
 }
 
 .contact-info {
-    background-color: #f7f4f0;
+    /* background-color: #f7f4f0; */
+    background-color: rgb(152, 97, 106);
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -19,7 +20,7 @@
 }
 
 .contact-info-title {
-    color: var(--text);
+    color: white;
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 20px;
@@ -29,24 +30,26 @@
     display: flex;
     align-items: flex-start;
     gap: 12px;
+    color: white;
 }
 
 .contact-info-item h4 {
     margin: 0;
     font-size: 1.1rem;
     font-weight: bold;
-    color: #5a4a42;
+    color: white;
 }
 
 .contact-info-item p {
     margin: 5px 0 0;
     color: #333;
     font-size: 0.95rem;
+    color: white;
 }
 
 .contact-icon {
     font-size: 1.5rem;
-    color: #5a4a42;
+    color: white;
     margin-top: 2px;
 }
 
@@ -60,7 +63,7 @@
 }
 
 .contact-form-title {
-    color: var(--text);
+    color: rgb(152, 97, 106);
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 20px;
@@ -101,8 +104,9 @@
 .contact-section-wrapper button {
     align-self: flex-start;
     padding: 10px 20px;
-    background-color: var(--text);
-    color: white;
+    /* background-color: var(--text); */
+    background-color: #ffeaf3;
+    color: black;
     border: none;
     cursor: pointer;
     font-size: 1rem;
@@ -111,7 +115,8 @@
 }
 
 .contact-section-wrapper button:hover {
-    background-color: var(--text-2);
+    background-color:rgb(152, 97, 106);
+    color: white;
 }
 
 /* Responsive */

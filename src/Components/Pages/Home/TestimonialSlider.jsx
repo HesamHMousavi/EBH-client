@@ -4,18 +4,18 @@ import { IoStarSharp } from "react-icons/io5";
 
 const testimonials = [
   {
-    text: "Stunning designs in all jewellery pieces. Haven't seen gold jewellery like this anywhere else. Service was fantastic, very happy with my bracelet. Will be visiting again.",
-    author: "RAV 91",
+    text: "Absolutely stunning arrangements! Ordered a bouquet and balloons for a birthday, and they exceeded my expectations. Everything was fresh, elegant, and delivered on time. Will definitely be back!",
+    author: "Emily R.",
     stars: 5,
   },
   {
-    text: "Excellent quality and customer service. The craftsmanship of the jewellery is outstanding. Highly recommend!",
-    author: "LISA K.",
+    text: "Fleuré made my event magical! The floral arrangements were breathtaking, and the balloons added the perfect touch. Their attention to detail and quality is unmatched. Highly recommend!",
+    author: "James L",
     stars: 4,
   },
   {
-    text: "A wonderful experience shopping here. The designs are unique, and the staff is very knowledgeable and helpful.",
-    author: "MOHAMMED A.",
+    text: "Beautiful flowers, amazing service! Ordered a surprise bouquet and balloons for my partner, and they loved it. The team at Fleuré truly knows how to make every occasion special!",
+    author: "Sophia M",
     stars: 3,
   },
 ];

@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import { ClientContext } from "../../../Context/ClientState";
 import { v4 as uuidv4 } from "uuid";
+import { IoIosArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 import "./Configurator.css";
 
 const Configurator = () => {
+  const nav = useNavigate();
   const [config, setConfig] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [missingFields, setMissingFields] = useState([]); // Track missing fields
@@ -102,6 +105,8 @@ const Configurator = () => {
       PriceAtPurchase: config.price,
       Options: selectedOptions,
       selectedOptions,
+      stripeProductId: config.stripeProductId,
+      stripePriceId: config.stripePriceId,
     };
 
     AddCart(cartItem);
@@ -112,11 +117,19 @@ const Configurator = () => {
   const desc = config?.description;
   delete config?.attributes?.description;
 
+  const onClick = () => {
+    nav(-1);
+  };
+
   return (
     config && (
       <div className="max-width">
         <div className="bouquet-container">
           <div className="bouquet-images">
+            <span className="back" onClick={onClick}>
+              <IoIosArrowBack color="#666" />
+              <h4>Back</h4>
+            </span>
             <img
               src={config.image}
               alt={config.name}
@@ -146,7 +159,11 @@ const Configurator = () => {
               return (
                 <div className={`bouquet-option`} key={key}>
                   <p className="option-label">
-                    {formatSingleWord(key.replace(/([A-Z])/g, " $1")?.trim())}
+                    {key === "message"
+                      ? "Card Message"
+                      : formatSingleWord(
+                          key.replace(/([A-Z])/g, " $1")?.trim()
+                        )}
                   </p>
                   {Array.isArray(value) ? (
                     <>
@@ -183,7 +200,11 @@ const Configurator = () => {
             })}
 
             <div className="bouquet-note">
-              <p className="option-label">Notes for the Florist</p>
+              <p className="option-label">
+                {config.category === "Balloon"
+                  ? "Order Notes"
+                  : "Notes for the Florist"}
+              </p>
               <textarea
                 placeholder="Type your message here..."
                 value={selectedOptions.notes || ""}

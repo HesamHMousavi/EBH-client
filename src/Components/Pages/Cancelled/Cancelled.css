@@ -1,0 +1,40 @@
+.cancel-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+  }
+  
+  .cancel-icon {
+    color: red;
+    font-size: 80px;
+    margin-bottom: 20px;
+  }
+  
+  .cancel-wrapper h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .cancel-wrapper p {
+    color: #666;
+    font-size: 18px;
+    max-width: 400px;
+  }
+  
+  .redirect-message {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #444;
+  }
+  
+  .countdown {
+    font-weight: bold;
+    color: red;
+  }
+  

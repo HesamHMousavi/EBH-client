@@ -1,12 +1,12 @@
 import React from "react";
 import "./Banner.css";
-import bannerImage from "../../../Images/fff.png";
+import bannerImage from "../../../Images/hero2.jpg";
 
 const Banner = () => {
   return (
     <div className="banner" style={{ backgroundImage: `url(${bannerImage})` }}>
       <div className="banner-overlay">
-        <h1 className="banner-text">ABOUT FLEURÈ</h1>
+        {/* <h1 className="banner-text">ABOUT FLEURÈ</h1> */}
       </div>
     </div>
   );

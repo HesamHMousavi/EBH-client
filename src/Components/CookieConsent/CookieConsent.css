@@ -2,13 +2,24 @@
   position: fixed;
   bottom: 20px;
   left: 20px;
-  width: 400px;
+  width: 90%; /* Default width */
+  max-width: 400px; /* Ensures it doesn't get too large on bigger screens */
   background: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   z-index: 1000;
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 500px) {
+  .cookie-consent {
+    left: 10px;
+    right: 10px;
+    width: calc(100% - 20px); /* Ensure it fits within the screen */
+    bottom: 10px;
+  }
 }
 
 .cookie-consent h3 {
@@ -25,10 +36,12 @@
   margin-top: 15px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap; /* Allow buttons to stack on smaller screens */
 }
 
 .cookie-buttons button {
   flex: 1;
+  min-width: 45%; /* Ensures buttons stay readable on small screens */
   margin: 5px;
   padding: 10px;
   border-radius: 5px;

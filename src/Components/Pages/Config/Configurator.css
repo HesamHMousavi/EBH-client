@@ -17,6 +17,18 @@
     gap: 15px;
 }
 
+.back h4{ 
+    margin-left: 10px;
+    font-weight: 400;
+    color: #666;
+}
+.back{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
 .bouquet-main-image {
     width: 100%;
     height: 500px;
@@ -116,8 +128,8 @@
 }
 
 .option-button.selected {
-    background-color:var(--pink);
-    color: white;
+    background-color:#ffeaf3;
+    /* color: white; */
 }
 
 .option-input, .option-select {

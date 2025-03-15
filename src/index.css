@@ -5,6 +5,7 @@ body {
     font-family: "Public Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: white !important;
 }
 *{
   margin: 0;
@@ -20,6 +21,31 @@ body {
   --pink: #af8e98;
   --pink-light: #f4c2c2;
 }
+
+input[type="date"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #ccc;
+  background: white;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  outline: none;
+}
+
+/* Remove the calendar icon in WebKit browsers (Chrome, Safari) */
+
+/* Remove default Firefox styles */
+input[type="date"]::-moz-focus-inner {
+  border: 0;
+}
+
+.date-picker-wrapper input[type="date"] {
+  padding-right: 30px; /* Space for a custom icon */
+}
+
+
 
 .flex-col-between{
   display: flex;
@@ -113,8 +139,16 @@ body {
         transform: rotate(360deg);
     }
     } 
+
   .loader-con{
     height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn-loader{
+    margin-top: auto;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;

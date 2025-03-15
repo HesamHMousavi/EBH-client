@@ -94,10 +94,17 @@
         font-size: 14px;
         padding: 8px 14px;
     }
+    .bouquet-card-2 {
+        width: 75%; /* Increase width on smaller screens */
+    }
 }
 
 /* Mobile View */
 @media (max-width: 600px) {
+
+    .bouquet-card-2 {
+        width: 95%; /* Expand to 90% for better responsiveness */
+    }
 
     .bouquet-image {
         height: 200px;

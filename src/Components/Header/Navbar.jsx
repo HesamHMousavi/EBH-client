@@ -90,7 +90,7 @@ const Header = () => {
         <Link to="/hatboxes" onClick={() => setMenuOpen(false)}>
           Hat Boxes
         </Link>
-        <Link to="/funeral-flowers" onClick={() => setMenuOpen(false)}>
+        <Link to="/funeral" onClick={() => setMenuOpen(false)}>
           Funeral Flowers
         </Link>
         <Link to="/about" onClick={() => setMenuOpen(false)}>
