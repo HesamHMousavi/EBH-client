@@ -5,38 +5,40 @@
   padding: 5rem 2rem;
   max-width: 1400px;
   margin: 5rem auto;
-  margin-top:15rem ;
+  margin-top: 15rem;
   background: white !important;
 }
 
-.checkout-container-empty{
+.checkout-container-empty {
   height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 160px;
 }
-.order-summary{
+.order-summary {
   display: flex;
   flex-direction: column;
   background: white !important;
 }
 
-.form-section  {
+.form-section {
   background: white;
   /* padding: 1.5rem; */
   border-radius: 10px;
   background-color: #fff;
 }
 
-.form-section h2 , .order-summary h2{
-  margin: 10px 0 ;
+.form-section h2,
+.order-summary h2 {
+  margin: 10px 0;
   font-size: 20px;
   font-weight: 400;
   color: #555;
 }
 
-.checkout-container input,.checkout-container select {
+.checkout-container input,
+.checkout-container select {
   outline: none;
   width: 100%;
   padding: 0.75rem;
@@ -45,18 +47,20 @@
   border-radius: 5px;
 }
 
-.name-fields, .city-fields, .state-fields {
+.name-fields,
+.city-fields,
+.state-fields {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap:10px;
+  gap: 10px;
 }
-.address{
-  gap:10px;
+.address {
+  gap: 10px;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   display: grid;
 }
-.look-up{
+.look-up {
   padding: 12px;
   max-width: 100px;
   min-width: 100px;
@@ -87,21 +91,21 @@
 .method span {
   color: #555;
 }
-.method h4  {
+.method h4 {
   color: #555;
   font-weight: 400;
 }
-.method p  {
+.method p {
   color: #555;
 }
 
 .method.selected span {
   color: #111;
 }
-.method.selected h4  {
+.method.selected h4 {
   color: #111;
 }
-.method.selected p  {
+.method.selected p {
   color: #111;
 }
 
@@ -146,7 +150,8 @@
   margin: 0;
 }
 
-.item-variant, .item-price {
+.item-variant,
+.item-price {
   color: #555;
   font-size: 0.875rem;
   margin: 0;
@@ -174,16 +179,21 @@
   color: #e63946;
 }
 .date-selection {
-  margin-bottom: 0 ;
+  margin-bottom: 0;
   margin-top: 20px;
+}
+.date-selection h4 {
+  font-weight: 400;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #555;
 }
 
 .date-selection input {
-  margin-bottom: 0 ;
+  margin-bottom: 0;
   width: 100%;
   /* padding: 8px; */
 }
-
 
 .summary-totals p {
   display: flex;
@@ -230,23 +240,22 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
-.item-attr{
+.item-attr {
   font-size: 12px;
   font-weight: 300;
 }
 
-
 @media (max-width: 768px) {
   .checkout-container {
-      grid-template-columns: 1fr;
-      padding: 1rem;
+    grid-template-columns: 1fr;
+    padding: 1rem;
   }
 
   .delivery-methods {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .order-item {
-      flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 }

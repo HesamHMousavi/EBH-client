@@ -109,8 +109,19 @@ export const ClientState = (props) => {
 
   const GetAddress = async (number, postcode) => {
     try {
+      const postcodecheck = postcode?.trim().toUpperCase();
+
+      const regex = /^([A-Za-z]{2}[\d]{1,2}[A-Za-z]?)\s*([\d][A-Za-z]{2})$/;
+
+      const match = postcodecheck?.match(regex);
+
+      if (!match) {
+        SetAlert("Invalid Address", "warning");
+        return false;
+      }
       const res = await axios.post(`/api/address/`, { number, postcode });
       if (!res.data) SetAlert("Invalid Address", "warning");
+      // Regular expression to match UK postcode pattern
       return res.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -186,8 +197,7 @@ export const ClientState = (props) => {
         SetLoading: SetLoading,
         EmptyCart: EmptyCart,
         GetAddress: GetAddress,
-      }}
-    >
+      }}>
       {props.children}
     </ClientContext.Provider>
   );

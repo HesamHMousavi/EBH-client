@@ -23,6 +23,7 @@ function CheckoutForm() {
   const [county, setCounty] = useState();
   const [addressLoading, setLoading2] = useState(false);
   const [missingDelivery, setMissingDelivery] = useState(false);
+  const [isBD, setISBD] = useState(false);
   const [shippingDetails, setShippingDetails] = useState({
     type: "",
     date: getTomorrow(),
@@ -61,7 +62,7 @@ function CheckoutForm() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormFields((prev) => ({ ...prev, [name]: value }));
-    if (value.trim() !== "") {
+    if (value?.trim() !== "") {
       setMissingFields((prev) => prev.filter((field) => field !== name));
     }
   };
@@ -105,7 +106,7 @@ function CheckoutForm() {
   const validateInputs = () => {
     const requiredFields = Object.keys(formFields);
     const emptyFields = requiredFields.filter(
-      (field) => formFields[field].trim() === ""
+      (field) => formFields[field]?.trim() === ""
     );
 
     setMissingFields(emptyFields);
@@ -124,14 +125,14 @@ function CheckoutForm() {
   // Function to format selected options into a list with capitalized values
   const formatSelectedOptions = (options) => {
     if (!options || Object.keys(options).length === 0) {
-      return <p className="no-options">No custom options</p>;
+      return <p className='no-options'>No custom options</p>;
     }
     return (
-      <ul className="options-list">
+      <ul className='options-list'>
         {Object.entries(options).map(([key, value]) => (
           <li key={key}>
             {capitalizeFirstLetter(key.replace(/([A-Z])/g, " $1"))}:{" "}
-            <strong className="item-attr">
+            <strong className='item-attr'>
               {capitalizeFirstLetter(value)}
             </strong>
           </li>
@@ -181,40 +182,41 @@ function CheckoutForm() {
     setLoading2(true);
     const res = await GetAddress(number, postalCode);
     setLoading2(false);
-    setCounty(res.county);
+    setCounty(res?.county ? res?.county : "");
+    if (res?.pCode) setISBD(isBDPostcode(res?.pCode));
     setFormFields((prev) => ({
       ...prev,
-      address: res.house,
-      street: res.street,
-      city: res.town,
-      postalCode: res.pCode,
+      address: res?.house ? res?.house : "",
+      street: res?.street ? res?.street : "",
+      city: res?.town ? res?.town : "",
+      postalCode: res?.pCode ? res?.pCode : "",
     }));
   };
 
   if (Cart.length < 1)
     return (
-      <div className="checkout-container-empty">
+      <div className='checkout-container-empty'>
         <h1>Basket Empty</h1>
       </div>
     );
 
   return (
-    <div className="checkout-container">
-      <div className="form-section">
+    <div className='checkout-container'>
+      <div className='form-section'>
         <h2>Contact information</h2>
         <input
-          type="email"
-          name="email"
-          placeholder="Email address"
+          type='email'
+          name='email'
+          placeholder='Email address'
           value={formFields.email}
           onChange={handleInputChange}
           className={missingFields.includes("email") ? "error-border" : ""}
         />
-        <div className="name-fields">
+        <div className='name-fields'>
           <input
-            type="text"
-            name="firstName"
-            placeholder="First name"
+            type='text'
+            name='firstName'
+            placeholder='First name'
             value={formFields.firstName}
             onChange={handleInputChange}
             className={
@@ -222,57 +224,64 @@ function CheckoutForm() {
             }
           />
           <input
-            type="text"
-            name="lastName"
-            placeholder="Last name"
+            type='text'
+            name='lastName'
+            placeholder='Last name'
             value={formFields.lastName}
             onChange={handleInputChange}
             className={missingFields.includes("lastName") ? "error-border" : ""}
           />
           <input
-            type="text"
-            name="phone"
-            placeholder="Phone"
+            type='text'
+            name='phone'
+            placeholder='Phone'
             value={formFields.phone}
             onChange={handleInputChange}
             className={missingFields.includes("phone") ? "error-border" : ""}
           />
         </div>
-        <h2>Delivery Address</h2>
-        <div className="address">
-          <input
-            type="text"
-            name="address"
-            placeholder="Apartment, House no, suite, etc."
-            value={formFields.address}
-            onChange={handleInputChange}
-            className={missingFields.includes("address") ? "error-border" : ""}
-          />
-          <input
-            type="text"
-            name="postalCode"
-            placeholder="Postal code"
-            value={formFields.postalCode}
-            onChange={handleInputChange}
-            className={
-              missingFields.includes("postalCode") ? "error-border" : ""
-            }
-          />
-        </div>
-        <button
-          className="look-up"
-          disabled={addressLoading}
-          onClick={() => getAddress(formFields.address, formFields.postalCode)}
-        >
-          {addressLoading ? <span className="loader-2"></span> : "Look Up"}
-        </button>
+        {!noDe && (
+          <>
+            <div className='address'>
+              <input
+                type='text'
+                name='address'
+                placeholder='Apartment, House no, suite, etc.'
+                value={formFields.address}
+                onChange={handleInputChange}
+                className={
+                  missingFields.includes("address") ? "error-border" : ""
+                }
+              />
+              <input
+                type='text'
+                name='postalCode'
+                placeholder='Postal code'
+                value={formFields.postalCode}
+                onChange={handleInputChange}
+                className={
+                  missingFields.includes("postalCode") ? "error-border" : ""
+                }
+              />
+            </div>
+
+            <button
+              className='look-up'
+              disabled={addressLoading}
+              onClick={() =>
+                getAddress(formFields.address, formFields.postalCode)
+              }>
+              {addressLoading ? <span className='loader-2'></span> : "Look Up"}
+            </button>
+          </>
+        )}
         {county && (
           <>
-            <div className="city-fields">
+            <div className='city-fields'>
               <input
-                type="text"
-                name="street"
-                placeholder="Street Name"
+                type='text'
+                name='street'
+                placeholder='Street Name'
                 value={formFields.street}
                 onChange={handleInputChange}
                 className={
@@ -280,19 +289,19 @@ function CheckoutForm() {
                 }
               />
               <input
-                type="text"
-                name="city"
-                placeholder="City"
+                type='text'
+                name='city'
+                placeholder='District'
                 value={formFields.city}
                 onChange={handleInputChange}
                 className={missingFields.includes("city") ? "error-border" : ""}
               />
             </div>
-            <div className="city-fields">
+            <div className='city-fields'>
               <input
-                type="text"
-                name="county"
-                placeholder="County"
+                type='text'
+                name='county'
+                placeholder='County'
                 value={county}
                 onChange={(e) => setCounty(e.target.value)}
                 className={missingFields.includes("city") ? "error-border" : ""}
@@ -300,46 +309,49 @@ function CheckoutForm() {
             </div>
           </>
         )}
-
-        <h2>Delivery method</h2>
         {noDe && (
-          <p style={{ marginBottom: "1rem" }}>
-            One or more selected products only available for collection{" "}
+          <p style={{ margin: "1rem 0", color: "#ffc107" }}>
+            One or more selected products ONLY available for COLLECTION{" "}
           </p>
         )}
-        <div className={`delivery-methods `}>
-          <div
-            className={`method ${
-              deliveryMethod === "Collection" ? "selected" : ""
-            }`}
-            onClick={() => handleDeliverySelection("Collection", 0)}
-          >
-            <h4>Collection</h4>
-            <p>9:00 to 19:00</p>
-            <span>Free</span>
-          </div>
+        {county && (
+          <>
+            <h2>Delivery method</h2>
+            <div className={`delivery-methods `}>
+              <div
+                className={`method ${
+                  deliveryMethod === "Collection" ? "selected" : ""
+                }`}
+                onClick={() => handleDeliverySelection("Collection", 0)}>
+                <h4>Collection</h4>
+                <p>9:00 to 19:00</p>
+                <span>Free</span>
+              </div>
 
-          <div
-            className={`method ${
-              deliveryMethod === "Express" ? "selected" : ""
-            }`}
-            onClick={() => handleDeliverySelection("Express", 5.0)}
-          >
-            <h4>Express</h4>
-            <p>Next Day Delivery</p>
-            <span>+ £9.99</span>
-          </div>
-        </div>
+              {!noDe && (
+                <div
+                  className={`method ${
+                    deliveryMethod === "Express" ? "selected" : ""
+                  }`}
+                  onClick={() => handleDeliverySelection("Express", 5.0)}>
+                  <h4>Express</h4>
+                  <p>Next Day Delivery</p>
+                  {isBD ? <span>+ £5.99</span> : <span>+ £9.99</span>}
+                </div>
+              )}
+            </div>
+          </>
+        )}
         {missingDelivery && (
-          <p className="error-text" style={{ marginTop: "1rem" }}>
+          <p className='error-text' style={{ marginTop: "1rem" }}>
             Please select an option
           </p>
         )}
         {deliveryMethod === "Collection" && (
-          <div className="date-selection">
-            <h3>Select Collection Date</h3>
+          <div className='date-selection'>
+            <h4>Select Collection Date</h4>
             <input
-              type="date"
+              type='date'
               value={collectionDate}
               onChange={handleDateChange}
               min={getToday()}
@@ -349,27 +361,27 @@ function CheckoutForm() {
           </div>
         )}
         {missingDate && (
-          <p className="error-text" style={{ marginTop: "1rem" }}>
+          <p className='error-text' style={{ marginTop: "1rem" }}>
             Please select a collection date{" "}
           </p>
         )}
       </div>
 
-      <div className="order-summary">
+      <div className='order-summary'>
         <h2>Order summary</h2>
-        <div className="order-items">
+        <div className='order-items'>
           {items.length === 0 ? (
             <p>Your cart is empty.</p>
           ) : (
             items.map((item) => (
-              <div key={item.id} className="order-item">
+              <div key={item.id} className='order-item'>
                 <img src={item.image || img} alt={item.name} />
-                <div className="item-details">
-                  <p className="item-name">{item.name}</p>
+                <div className='item-details'>
+                  <p className='item-name'>{item.name}</p>
                   {formatSelectedOptions(item.selectedOptions)}
                   {/* <p className="item-price">£{item.price.toFixed(2)}</p> */}
                 </div>
-                <div className="item-actions">
+                <div className='item-actions'>
                   <button onClick={() => handleRemove(item.id)}>
                     <FaTrash />
                   </button>
@@ -391,11 +403,11 @@ function CheckoutForm() {
         </div> */}
 
         {checkLoading ? (
-          <div className="btn-loader">
-            <span className="loader"></span>
+          <div className='btn-loader'>
+            <span className='loader'></span>
           </div>
         ) : (
-          <button className="confirm-btn" onClick={handleConfirmOrder}>
+          <button className='confirm-btn' onClick={handleConfirmOrder}>
             Confirm order
           </button>
         )}
@@ -403,5 +415,38 @@ function CheckoutForm() {
     </div>
   );
 }
+
+const isBDPostcode = (postcode) => {
+  const arr = [
+    "BD1",
+    "BD2",
+    "BD3",
+    "BD4",
+    "BD5",
+    "BD6",
+    "BD7",
+    "BD8",
+    "BD9",
+    "BD12",
+    "BD13",
+    "BD14",
+    "BD15",
+    "BD18",
+  ];
+
+  // Normalize the postcode (uppercase and remove extra spaces)
+
+  // Regular expression to match UK postcode pattern
+  const regex = /^BD(\d{1,2})\s?\d[A-Z]{2}$/;
+
+  const match = postcode?.match(regex);
+
+  if (match) {
+    const area = `BD${match[1]}`; // Extract BD + number part
+    return arr.includes(area);
+  }
+
+  return false;
+};
 
 export default CheckoutForm;
