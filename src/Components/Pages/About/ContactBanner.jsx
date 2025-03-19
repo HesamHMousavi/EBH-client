@@ -8,16 +8,17 @@ const ContactBanner = () => {
         <strong>Let’s make something beautiful together!</strong>
       </p>
       <p className="contact-banner-text">
-        Get in touch today, Reach out via DM on{" "}
+        Get in touch today—send us a DM on{" "}
         <a
-          href="https://www.instagram.com"
+          href="https://www.instagram.com/fleureuk/?igsh=cjNvbXM2ZGs5cWJ3#"
           target="_blank"
           rel="noopener noreferrer"
           className="contact-banner-link"
         >
           Instagram
         </a>{" "}
-        or fill out the contact form — let’s start planning your perfect event.
+        or fill out the contact form. Let’s start planning your dream floral
+        arrangement!
       </p>
     </div>
   );

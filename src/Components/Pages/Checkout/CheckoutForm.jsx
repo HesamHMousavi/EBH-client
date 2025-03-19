@@ -5,7 +5,8 @@ import img from "../../../Images/fff.png"; // Default image if needed
 import "./CheckoutForm.css";
 
 function CheckoutForm() {
-  const { Cart, DeleteCart, SetAlert, CreateOrder } = useContext(ClientContext);
+  const { Cart, DeleteCart, SetAlert, CreateOrder, GetAddress } =
+    useContext(ClientContext);
   const getTomorrow = () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1); // Move to next day
@@ -14,12 +15,13 @@ function CheckoutForm() {
   const [checkLoading, setLoading] = useState(false);
   const [items, setItems] = useState([]);
   const [deliveryMethod, setDeliveryMethod] = useState("");
-  const [subtotal, setSubtotal] = useState(0);
   const [shippingCost, setShippingCost] = useState(0);
-  const [total, setTotal] = useState(0);
-  const [collectionDate, setCollectionDate] = useState(""); // Date for collection
+  const [noDe, setDe] = useState(false);
+  const [collectionDate, setCollectionDate] = useState("");
   const [missingDate, setMissingDate] = useState(false);
   const [missingFields, setMissingFields] = useState([]);
+  const [county, setCounty] = useState();
+  const [addressLoading, setLoading2] = useState(false);
   const [missingDelivery, setMissingDelivery] = useState(false);
   const [shippingDetails, setShippingDetails] = useState({
     type: "",
@@ -42,15 +44,19 @@ function CheckoutForm() {
   }, [Cart]);
 
   useEffect(() => {
-    const newSubtotal = items.reduce((sum, item) => sum + item.price, 0);
-    setSubtotal(newSubtotal);
-    setTotal(newSubtotal + shippingCost);
+    items.forEach((item) => {
+      if (item.Category === "BloomAndBubbles") {
+        handleDeliverySelection("Collection", 0);
+        setDe(true);
+      } else {
+        setDe(false);
+      }
+    });
   }, [items, shippingCost]);
 
   const handleRemove = (id) => {
     DeleteCart(id);
   };
-
   // Handle input change & remove red border when filled
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -161,6 +167,30 @@ function CheckoutForm() {
     // SetAlert("Order Confirmed! Thank you for your purchase.");
   };
 
+  const getAddress = async (number, postalCode) => {
+    if (number === "" && postalCode === "") {
+      setMissingFields(["postalCode", "address"]);
+      return;
+    } else if (number !== "" && postalCode === "") {
+      setMissingFields(["postalCode"]);
+      return;
+    } else if (number === "" && postalCode !== "") {
+      setMissingFields(["address"]);
+      return;
+    }
+    setLoading2(true);
+    const res = await GetAddress(number, postalCode);
+    setLoading2(false);
+    setCounty(res.county);
+    setFormFields((prev) => ({
+      ...prev,
+      address: res.house,
+      street: res.street,
+      city: res.town,
+      postalCode: res.pCode,
+    }));
+  };
+
   if (Cart.length < 1)
     return (
       <div className="checkout-container-empty">
@@ -180,8 +210,6 @@ function CheckoutForm() {
           onChange={handleInputChange}
           className={missingFields.includes("email") ? "error-border" : ""}
         />
-
-        <h2>Delivery Address</h2>
         <div className="name-fields">
           <input
             type="text"
@@ -201,31 +229,24 @@ function CheckoutForm() {
             onChange={handleInputChange}
             className={missingFields.includes("lastName") ? "error-border" : ""}
           />
-        </div>
-        <input
-          type="text"
-          name="address"
-          placeholder="Apartment, House no, suite, etc."
-          value={formFields.address}
-          onChange={handleInputChange}
-          className={missingFields.includes("address") ? "error-border" : ""}
-        />
-        <input
-          type="text"
-          name="street"
-          placeholder="Street Name"
-          value={formFields.street}
-          onChange={handleInputChange}
-          className={missingFields.includes("street") ? "error-border" : ""}
-        />
-        <div className="city-fields">
           <input
             type="text"
-            name="city"
-            placeholder="City"
-            value={formFields.city}
+            name="phone"
+            placeholder="Phone"
+            value={formFields.phone}
             onChange={handleInputChange}
-            className={missingFields.includes("city") ? "error-border" : ""}
+            className={missingFields.includes("phone") ? "error-border" : ""}
+          />
+        </div>
+        <h2>Delivery Address</h2>
+        <div className="address">
+          <input
+            type="text"
+            name="address"
+            placeholder="Apartment, House no, suite, etc."
+            value={formFields.address}
+            onChange={handleInputChange}
+            className={missingFields.includes("address") ? "error-border" : ""}
           />
           <input
             type="text"
@@ -238,17 +259,55 @@ function CheckoutForm() {
             }
           />
         </div>
-        <input
-          type="text"
-          name="phone"
-          placeholder="Phone"
-          value={formFields.phone}
-          onChange={handleInputChange}
-          className={missingFields.includes("phone") ? "error-border" : ""}
-        />
+        <button
+          className="look-up"
+          disabled={addressLoading}
+          onClick={() => getAddress(formFields.address, formFields.postalCode)}
+        >
+          {addressLoading ? <span className="loader-2"></span> : "Look Up"}
+        </button>
+        {county && (
+          <>
+            <div className="city-fields">
+              <input
+                type="text"
+                name="street"
+                placeholder="Street Name"
+                value={formFields.street}
+                onChange={handleInputChange}
+                className={
+                  missingFields.includes("street") ? "error-border" : ""
+                }
+              />
+              <input
+                type="text"
+                name="city"
+                placeholder="City"
+                value={formFields.city}
+                onChange={handleInputChange}
+                className={missingFields.includes("city") ? "error-border" : ""}
+              />
+            </div>
+            <div className="city-fields">
+              <input
+                type="text"
+                name="county"
+                placeholder="County"
+                value={county}
+                onChange={(e) => setCounty(e.target.value)}
+                className={missingFields.includes("city") ? "error-border" : ""}
+              />
+            </div>
+          </>
+        )}
 
         <h2>Delivery method</h2>
-        <div className={`delivery-methods  `}>
+        {noDe && (
+          <p style={{ marginBottom: "1rem" }}>
+            One or more selected products only available for collection{" "}
+          </p>
+        )}
+        <div className={`delivery-methods `}>
           <div
             className={`method ${
               deliveryMethod === "Collection" ? "selected" : ""
@@ -259,6 +318,7 @@ function CheckoutForm() {
             <p>9:00 to 19:00</p>
             <span>Free</span>
           </div>
+
           <div
             className={`method ${
               deliveryMethod === "Express" ? "selected" : ""
@@ -267,7 +327,7 @@ function CheckoutForm() {
           >
             <h4>Express</h4>
             <p>Next Day Delivery</p>
-            <span>£5.00</span>
+            <span>+ £9.99</span>
           </div>
         </div>
         {missingDelivery && (
@@ -307,7 +367,7 @@ function CheckoutForm() {
                 <div className="item-details">
                   <p className="item-name">{item.name}</p>
                   {formatSelectedOptions(item.selectedOptions)}
-                  <p className="item-price">£{item.price.toFixed(2)}</p>
+                  {/* <p className="item-price">£{item.price.toFixed(2)}</p> */}
                 </div>
                 <div className="item-actions">
                   <button onClick={() => handleRemove(item.id)}>
@@ -318,7 +378,7 @@ function CheckoutForm() {
             ))
           )}
         </div>
-        <div className="summary-totals">
+        {/* <div className="summary-totals">
           <p>
             Subtotal: <span>£{subtotal.toFixed(2)}</span>
           </p>
@@ -328,7 +388,7 @@ function CheckoutForm() {
           <p className="total">
             Total: <span>£{total.toFixed(2)}</span>
           </p>
-        </div>
+        </div> */}
 
         {checkLoading ? (
           <div className="btn-loader">

@@ -9,14 +9,15 @@ const products = [
     id: 1,
     name: "Love Heart Wreath",
     description: "Heartfelt floral tribute wreath",
-    price: "£60.00",
+    price: '£60.00 Small 12" ',
+    price2: '£75.00 Large 15"',
     image: pic2, // Replace with actual image path
   },
   {
     id: 2,
     name: "Name tribute",
     description: "Personalised floral name tribute",
-    price: "£30.00",
+    price: "£30.00 Per letter",
     image: pic1, // Replace with actual image path
   },
 ];
@@ -35,7 +36,8 @@ const FuneralFlowers = () => {
             <div className="product-info">
               <h3>{product.name}</h3>
               <p>{product.description}</p>
-              <span className="price">{product.price}</span>
+              <div className="price-3">{product.price}</div>
+              <div className="price-3">{product.price2}</div>
             </div>
           </div>
         ))}

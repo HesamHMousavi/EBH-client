@@ -165,6 +165,16 @@ const sectionsData = {
         },
       ],
     },
+    {
+      title: "Disclaimer",
+      subtitles: [
+        {
+          subtitle: "Service Availability",
+          paragraph:
+            "We strive to ensure that our website and services are operational and error-free. However, we cannot guarantee uninterrupted access and accept no liability for service interruptions caused by events beyond our control (e.g., technical failures, acts of God). Force Majeure We are not liable for delays or failures in fulfilling our obligations due to circumstances beyond our reasonable control, including but not limited to severe weather, strikes, or supply chain disruptions.",
+        },
+      ],
+    },
   ],
 };
 

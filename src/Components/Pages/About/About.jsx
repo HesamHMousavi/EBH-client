@@ -15,10 +15,8 @@ const About = () => {
       <Header />
       <Banner />
       <MyStory />
-      <ServiceFeatures />
+      {/* <ServiceFeatures /> */}
       <ContactBanner />
-      {/* <ContactSection /> */}
-      {/* <TestimonialSlider /> */}
       <Sections />
       <Footer />
     </div>

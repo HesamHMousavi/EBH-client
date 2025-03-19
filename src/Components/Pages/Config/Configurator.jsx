@@ -9,23 +9,68 @@ const Configurator = () => {
   const nav = useNavigate();
   const [config, setConfig] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [missingFields, setMissingFields] = useState([]); // Track missing fields
+  const [missingFields, setMissingFields] = useState([]);
+  const [price, setPrice] = useState();
   const { SelectedProduct, AddCart, SetAlert } = useContext(ClientContext);
-
   useEffect(() => {
     const prod = SelectedProduct || JSON.parse(localStorage.getItem("PRODUCT"));
     setConfig(prod);
+    setPrice(prod.price);
   }, [SelectedProduct]);
+
+  const name = config?.category === "Balloon" ? "Message" : "Card Message";
 
   const handleOptionChange = (type, value) => {
     setSelectedOptions((prev) => {
-      // Remove field from missingFields once filled
+      const updatedOptions = { ...prev };
+
+      // If clicking the same option, deselect it
+      if (updatedOptions[type] === value) {
+        delete updatedOptions[type]; // Remove the selected option
+      } else {
+        updatedOptions[type] = value;
+      }
+
       if (value.toString().trim() !== "") {
         setMissingFields((prevMissing) =>
           prevMissing.filter((field) => field !== type)
         );
       }
-      return { ...prev, [type]: value };
+
+      const basePrice = config?.price || 0;
+      let extraCharges = 0;
+
+      const priceMap = {
+        Bouquet: {
+          "Options-3": { 30: 35, 50: 65, 100: 195 },
+          "Options-2": { 30: 40, 50: 75, 100: 175 },
+          "Options-1": { M: 8, L: 23, XL: 33 },
+        },
+        BloomAndBubbles: { M: 10, L: 20 },
+        Hatbox: { M: 10, L: 20 },
+      };
+
+      if (config?.category in priceMap) {
+        extraCharges +=
+          priceMap[config.category]?.[config.optionSet]?.[
+            updatedOptions.noOfRoses
+          ] || 0;
+        extraCharges += priceMap[config.category]?.[updatedOptions.Size] || 0;
+      }
+
+      if (updatedOptions.initials?.length > 1) {
+        extraCharges += 2.5 * (updatedOptions.initials.length - 1);
+      }
+
+      if (
+        ["Options-4", "Options-9", "Options-8"].includes(config?.optionSet) &&
+        updatedOptions.leafOption
+      ) {
+        extraCharges += 2.99;
+      }
+
+      setPrice(basePrice + extraCharges);
+      return updatedOptions;
     });
   };
 
@@ -54,11 +99,16 @@ const Configurator = () => {
     if (!config) return false;
 
     const missing = [];
-
     const hasFeathers = selectedOptions.accessory === "feathers";
     const hasBalloons = selectedOptions.accessory === "mini-balloons";
 
     for (const key in config.attributes) {
+      if (
+        key === "leafOption" ||
+        (key === "message" && config?.category !== "Balloon")
+      )
+        continue;
+
       if (
         key === "balloonColorScheme" &&
         hasBalloons &&
@@ -80,8 +130,7 @@ const Configurator = () => {
       }
     }
 
-    setMissingFields(missing); // Save missing fields
-
+    setMissingFields(missing);
     return missing.length === 0;
   };
 
@@ -142,7 +191,8 @@ const Configurator = () => {
           <div className="bouquet-details">
             <h2 className="bouquet-title">{config.name.toUpperCase()}</h2>
             <p className="bouquet-price">
-              From <strong>£{config.price}</strong>
+              {config?.price === price ? "From " : "Total "}
+              <strong>£{price.toFixed(2)}</strong>
             </p>
 
             {Object.entries(config.attributes).map(([key, value]) => {
@@ -158,13 +208,22 @@ const Configurator = () => {
                 return null;
               return (
                 <div className={`bouquet-option`} key={key}>
-                  <p className="option-label">
-                    {key === "message"
-                      ? "Card Message"
-                      : formatSingleWord(
-                          key.replace(/([A-Z])/g, " $1")?.trim()
-                        )}
-                  </p>
+                  {key === "initials" ? (
+                    <p className="option-label">
+                      Initials - First letter FREE additional letters £2.50 each
+                      - Max 10 Letters
+                    </p>
+                  ) : (
+                    <p className="option-label">
+                      {key === "message"
+                        ? name
+                        : key === "leafOption"
+                        ? "Optional Leafs  (£2.99)"
+                        : formatSingleWord(
+                            key.replace(/([A-Z])/g, " $1")?.trim()
+                          )}
+                    </p>
+                  )}
                   {Array.isArray(value) ? (
                     <>
                       <div className="option-buttons">
@@ -176,7 +235,7 @@ const Configurator = () => {
                             }`}
                             onClick={() => handleOptionChange(key, choice)}
                           >
-                            {formatLabel(choice)}
+                            {choice === "gray" ? "Grey" : formatLabel(choice)}
                           </button>
                         ))}
                       </div>
@@ -190,9 +249,15 @@ const Configurator = () => {
                       className={`option-input ${
                         missingFields.includes(key) ? "error-border" : ""
                       }`}
+                      maxLength={key === "initials" ? 10 : undefined}
                       placeholder="Type here..."
                       value={selectedOptions[key] || ""}
-                      onChange={(e) => handleOptionChange(key, e.target.value)}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        if (/^[a-zA-Z]*$/.test(value)) {
+                          handleOptionChange(key, value);
+                        }
+                      }}
                     />
                   )}
                 </div>

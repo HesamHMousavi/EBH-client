@@ -121,6 +121,16 @@ input[type="date"]::-moz-focus-inner {
   }   
 }
 
+.loader-2 {
+  width: 13px;
+  height: 13px;
+  border: 2px solid #aaa;
+  border-bottom-color: #000;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  }
 .loader {
   width: 20px;
   height: 20px;
@@ -146,6 +156,7 @@ input[type="date"]::-moz-focus-inner {
     justify-content: center;
     align-items: center;
   }
+
   .btn-loader{
     margin-top: auto;
     height: 40px;

@@ -107,6 +107,22 @@ export const ClientState = (props) => {
     }, 2000);
   }, []);
 
+  const GetAddress = async (number, postcode) => {
+    try {
+      const res = await axios.post(`/api/address/`, { number, postcode });
+      if (!res.data) SetAlert("Invalid Address", "warning");
+      return res.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        SetAlert(
+          error.response ? error.response?.data?.message : error.message
+        );
+      } else {
+        SetAlert(error.message);
+      }
+    }
+  };
+
   const CreateOrder = async (bulk) => {
     const order = {
       Email: bulk.email,
@@ -169,6 +185,7 @@ export const ClientState = (props) => {
         prodLoading: state.prodLoading,
         SetLoading: SetLoading,
         EmptyCart: EmptyCart,
+        GetAddress: GetAddress,
       }}
     >
       {props.children}

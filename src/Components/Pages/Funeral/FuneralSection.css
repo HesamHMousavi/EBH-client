@@ -68,10 +68,10 @@
     margin: 0 0 10px;
 }
 
-.product-price {
+.product-price-3 {
     font-size: 1.1rem;
     color: #777;
-    margin: 0;
+    margin: 0.5rem  !important;
 }
 
 /* Order Section */

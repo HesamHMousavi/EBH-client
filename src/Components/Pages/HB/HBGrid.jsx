@@ -25,13 +25,13 @@ const HBGrid = () => {
     </div>
   ) : products?.length > 0 ? (
     <div className="bouquet-grid-container">
-      <div className="bouquet-grid-2">
+      <div className="bouquet-grid">
         {products?.map((product, index) => (
-          <div className="bouquet-card-2" key={index}>
+          <div className="bouquet-card" key={index}>
             <img
               src={product.image}
               alt={product.name}
-              className="bouquet-image-2"
+              className="bouquet-image"
             />
             <div className="bouquet-info">
               <h3 className="bouquet-name">{product.name}</h3>
@@ -42,7 +42,7 @@ const HBGrid = () => {
                 </p>
               )}
               <div className="btn-con">
-                <p className="bouquet-price-2">£{product.price}</p>
+                <p className="bouquet-price">£{product.price}</p>
                 <button onClick={() => onNav(product)}>Buy Now</button>
               </div>
             </div>
