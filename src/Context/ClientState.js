@@ -19,8 +19,8 @@ import {
 
 export const ClientContext = createContext();
 
-// axios.defaults.baseURL = "https://api.fleure.co.uk";
-axios.defaults.baseURL = "http://localhost:5001/";
+axios.defaults.baseURL = "https://api.fleure.co.uk";
+// axios.defaults.baseURL = "http://localhost:5001/";
 
 export const ClientState = (props) => {
   const initialState = {
@@ -197,8 +197,7 @@ export const ClientState = (props) => {
         SetLoading: SetLoading,
         EmptyCart: EmptyCart,
         GetAddress: GetAddress,
-      }}
-    >
+      }}>
       {props.children}
     </ClientContext.Provider>
   );

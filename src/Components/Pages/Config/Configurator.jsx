@@ -36,7 +36,6 @@ const Configurator = () => {
           prevMissing.filter((field) => field !== type)
         );
       }
-
       const basePrice = config?.price || 0;
       let extraCharges = 0;
 
@@ -56,6 +55,10 @@ const Configurator = () => {
             updatedOptions.noOfRoses
           ] || 0;
         extraCharges += priceMap[config.category]?.[updatedOptions.Size] || 0;
+        extraCharges +=
+          priceMap[config.category]?.[config.optionSet]?.[
+            updatedOptions.Size
+          ] || 0;
       }
 
       if (updatedOptions.initials?.length > 1) {
@@ -172,25 +175,25 @@ const Configurator = () => {
 
   return (
     config && (
-      <div className="max-width">
-        <div className="bouquet-container">
-          <div className="bouquet-images">
-            <span className="back" onClick={onClick}>
-              <IoIosArrowBack color="#666" />
+      <div className='max-width'>
+        <div className='bouquet-container'>
+          <div className='bouquet-images'>
+            <span className='back' onClick={onClick}>
+              <IoIosArrowBack color='#666' />
               <h4>Back</h4>
             </span>
             <img
               src={config.image}
               alt={config.name}
-              className="bouquet-main-image"
+              className='bouquet-main-image'
             />
-            <h2 className="bouquet-title">Description</h2>
-            <p className="option-label">{desc || ""}</p>
+            <h2 className='bouquet-title'>Description</h2>
+            <p className='option-label'>{desc || ""}</p>
           </div>
 
-          <div className="bouquet-details">
-            <h2 className="bouquet-title">{config.name.toUpperCase()}</h2>
-            <p className="bouquet-price">
+          <div className='bouquet-details'>
+            <h2 className='bouquet-title'>{config.name.toUpperCase()}</h2>
+            <p className='bouquet-price'>
               {config?.price === price ? "From " : "Total "}
               <strong>£{price.toFixed(2)}</strong>
             </p>
@@ -209,12 +212,12 @@ const Configurator = () => {
               return (
                 <div className={`bouquet-option`} key={key}>
                   {key === "initials" ? (
-                    <p className="option-label">
+                    <p className='option-label'>
                       Initials - First letter FREE additional letters £2.50 each
                       - Max 10 Letters
                     </p>
                   ) : (
-                    <p className="option-label">
+                    <p className='option-label'>
                       {key === "message"
                         ? name
                         : key === "leafOption"
@@ -226,31 +229,30 @@ const Configurator = () => {
                   )}
                   {Array.isArray(value) ? (
                     <>
-                      <div className="option-buttons">
+                      <div className='option-buttons'>
                         {value.map((choice, index) => (
                           <button
                             key={index}
                             className={`option-button ${
                               selectedOptions[key] === choice ? "selected" : ""
                             }`}
-                            onClick={() => handleOptionChange(key, choice)}
-                          >
+                            onClick={() => handleOptionChange(key, choice)}>
                             {choice === "gray" ? "Grey" : formatLabel(choice)}
                           </button>
                         ))}
                       </div>
                       {missingFields.includes(key) && (
-                        <p className="error-text">Please select an option </p>
+                        <p className='error-text'>Please select an option </p>
                       )}
                     </>
                   ) : (
                     <input
-                      type="text"
+                      type='text'
                       className={`option-input ${
                         missingFields.includes(key) ? "error-border" : ""
                       }`}
                       maxLength={key === "initials" ? 10 : undefined}
-                      placeholder="Type here..."
+                      placeholder='Type here...'
                       value={selectedOptions[key] || ""}
                       onChange={(e) => {
                         const value = e.target.value;
@@ -264,20 +266,20 @@ const Configurator = () => {
               );
             })}
 
-            <div className="bouquet-note">
-              <p className="option-label">
+            <div className='bouquet-note'>
+              <p className='option-label'>
                 {config.category === "Balloon"
                   ? "Order Notes"
                   : "Notes for the Florist"}
               </p>
               <textarea
-                placeholder="Type your message here..."
+                placeholder='Type your message here...'
                 value={selectedOptions.notes || ""}
                 onChange={(e) => handleOptionChange("notes", e.target.value)}
               />
             </div>
 
-            <button className="add-to-cart" onClick={add}>
+            <button className='add-to-cart' onClick={add}>
               Add to Cart
             </button>
           </div>
