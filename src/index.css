@@ -1,20 +1,20 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-    font-family: "Public Sans", sans-serif;
+  font-family: "Public Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: white !important;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-:root{
+:root {
   --text: #544541;
-  --text-2:#5a4a42;
+  --text-2: #5a4a42;
   --primary: #f5f2eb;
   --second: #f0e6cc;
   --tri: #9d8e68;
@@ -45,9 +45,7 @@ input[type="date"]::-moz-focus-inner {
   padding-right: 30px; /* Space for a custom icon */
 }
 
-
-
-.flex-col-between{
+.flex-col-between {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -60,7 +58,7 @@ input[type="date"]::-moz-focus-inner {
   right: 5rem;
   z-index: 9999; /* Ensure it stays on top */
 }
-.cart-counter{
+.cart-counter {
   top: -5px;
   right: -5px;
   position: absolute;
@@ -79,7 +77,7 @@ input[type="date"]::-moz-focus-inner {
 }
 
 .cart a {
-  text-decoration: none ;
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,14 +93,14 @@ input[type="date"]::-moz-focus-inner {
 .cart-icon {
   padding: 15px;
 }
-.not-av{
+.not-av {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 50vh;
 }
-.not-av h1{
+.not-av h1 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -115,10 +113,10 @@ input[type="date"]::-moz-focus-inner {
 }
 @media (max-width: 768px) {
   .cart {
-      position: fixed;
-      bottom: 2em;
-      right: 2rem;
-  }   
+    position: fixed;
+    bottom: 2em;
+    right: 2rem;
+  }
 }
 
 .loader-2 {
@@ -130,7 +128,7 @@ input[type="date"]::-moz-focus-inner {
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
-  }
+}
 .loader {
   width: 20px;
   height: 20px;
@@ -140,27 +138,62 @@ input[type="date"]::-moz-focus-inner {
   display: inline-block;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
   }
-  @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-    } 
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
-  .loader-con{
-    height: 60vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+.loader-con {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .btn-loader{
-    margin-top: auto;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.btn-loader {
+  margin-top: auto;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-1 {
+  z-index: 10000;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgb(152, 97, 106);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem; /* Replaces fixed height */
+}
+
+.banner-1 h2 {
+  text-align: center;
+  margin: 0;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.25rem; /* Base font size for medium devices */
+}
+
+/* For smaller screens: reduce font size */
+@media (max-width: 575px) {
+  .banner-1 h2 {
+    font-size: 1rem;
   }
+}
+
+/* For larger screens: increase font size */
+@media (min-width: 768px) {
+  .banner-1 h2 {
+    font-size: 1.5rem;
+  }
+}

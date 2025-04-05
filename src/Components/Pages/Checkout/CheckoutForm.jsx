@@ -104,7 +104,14 @@ function CheckoutForm() {
 
   // Validate inputs and delivery method
   const validateInputs = () => {
-    const requiredFields = Object.keys(formFields);
+    const requiredFields = Object.keys(formFields).filter((field) => {
+      if (noDe) {
+        // If noDe is true, skip address-related fields
+        return !["address", "postalCode", "street", "city"].includes(field);
+      }
+      return true;
+    });
+
     const emptyFields = requiredFields.filter(
       (field) => formFields[field]?.trim() === ""
     );
@@ -114,6 +121,7 @@ function CheckoutForm() {
     if (!deliveryMethod) {
       setMissingDelivery(true);
     }
+
     if (deliveryMethod === "Collection" && !collectionDate) {
       setMissingDate(true);
       return false;
@@ -184,6 +192,7 @@ function CheckoutForm() {
     setLoading2(false);
     setCounty(res?.county ? res?.county : "");
     if (res?.pCode) setISBD(isBDPostcode(res?.pCode));
+    setDeliveryMethod("Collection") // REMOVE THIS IN PRODUCTION
     setFormFields((prev) => ({
       ...prev,
       address: res?.house ? res?.house : "",
@@ -330,6 +339,19 @@ function CheckoutForm() {
 
               {!noDe && (
                 <div
+                  className={`method disabled ${
+                    deliveryMethod === "Express" ? "selected" : ""
+                  }`}
+                  // onClick={() => handleDeliverySelection("Express", 5.0)}>
+                  onClick={undefined}>
+                  <h4>Delivery</h4>
+                  <p>Delivery Available from</p>
+                  <span>6TH MAY</span>
+                </div>
+              )}
+
+              {/* {!noDe && (
+                <div
                   className={`method ${
                     deliveryMethod === "Express" ? "selected" : ""
                   }`}
@@ -338,7 +360,7 @@ function CheckoutForm() {
                   <p>Next Day Delivery</p>
                   {isBD ? <span>+ £5.99</span> : <span>+ £9.99</span>}
                 </div>
-              )}
+              )} */}
             </div>
           </>
         )}

@@ -42,58 +42,58 @@ const Header = () => {
   return (
     <header className={`header ${scrolled ? "scrolled" : ""}`}>
       <nav className={`nav`}>
-        <Link to="/balloons" onClick={() => setMenuOpen(false)}>
+        <Link to='/balloons' onClick={() => setMenuOpen(false)}>
           Balloons
         </Link>
-        <Link to="/bouquets " onClick={() => setMenuOpen(false)}>
+        <Link to='/bouquets ' onClick={() => setMenuOpen(false)}>
           Bouquets
         </Link>
-        <Link to="/bloomandboxes" onClick={() => setMenuOpen(false)}>
+        <Link to='/bloomandboxes' onClick={() => setMenuOpen(false)}>
           Bloom & Bubbles
         </Link>
       </nav>
       <img
-        alt=""
+        alt=''
         src={scrolled ? smallLogo : fullLogo}
         onClick={() => nav("/")}
         className={`logo ${!scrolled ? "" : ""}`}
       />
-      <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-        <RxHamburgerMenu color="#333" size={30} />
+      <button className='menu-toggle' onClick={() => setMenuOpen(!menuOpen)}>
+        <RxHamburgerMenu color='#333' size={30} />
       </button>
       <nav className={`nav`}>
-        <Link to="/hatboxes" onClick={() => setMenuOpen(false)}>
+        <Link to='/hatboxes' onClick={() => setMenuOpen(false)}>
           Hat Boxes
         </Link>
 
-        <Link to="/funeral" onClick={() => setMenuOpen(false)}>
+        <Link to='/funeral' onClick={() => setMenuOpen(false)}>
           Funeral Flowers
         </Link>
-        <Link to="/about" onClick={() => setMenuOpen(false)}>
+        <Link to='/about' onClick={() => setMenuOpen(false)}>
           About
         </Link>
       </nav>
 
       <nav className={`nav ${menuOpen ? "open" : "dis-none"} `}>
-        <Link to="/" onClick={() => setMenuOpen(false)}>
+        <Link to='/' onClick={() => setMenuOpen(false)}>
           Home
         </Link>
-        <Link to="/balloons" onClick={() => setMenuOpen(false)}>
+        <Link to='/balloons' onClick={() => setMenuOpen(false)}>
           Balloons
         </Link>
-        <Link to="/bouquets" onClick={() => setMenuOpen(false)}>
+        <Link to='/bouquets' onClick={() => setMenuOpen(false)}>
           Bouquets
         </Link>
-        <Link to="/bloomandboxes" onClick={() => setMenuOpen(false)}>
+        <Link to='/bloomandboxes' onClick={() => setMenuOpen(false)}>
           Bloom & Bubbles
         </Link>
-        <Link to="/hatboxes" onClick={() => setMenuOpen(false)}>
+        <Link to='/hatboxes' onClick={() => setMenuOpen(false)}>
           Hat Boxes
         </Link>
-        <Link to="/funeral" onClick={() => setMenuOpen(false)}>
+        <Link to='/funeral' onClick={() => setMenuOpen(false)}>
           Funeral Flowers
         </Link>
-        <Link to="/about" onClick={() => setMenuOpen(false)}>
+        <Link to='/about' onClick={() => setMenuOpen(false)}>
           About
         </Link>
       </nav>

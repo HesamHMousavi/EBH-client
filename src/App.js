@@ -20,19 +20,22 @@ const App = () => {
     <Router>
       <ScrollTop />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/bouquets" element={<Bouquets />} />
-        <Route path="/config" element={<Configurator />} />
-        <Route path="/balloons" element={<Balloons />} />
-        <Route path="/bloomandboxes" element={<BloomAndBubbles />} />
-        <Route path="/funeral" element={<Funeral />} />
-        <Route path="/hatboxes" element={<HB />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/cancel" element={<Cancelled />} />
+        <Route path='/' element={<Home />} />
+        <Route path='/bouquets' element={<Bouquets />} />
+        <Route path='/config' element={<Configurator />} />
+        <Route path='/balloons' element={<Balloons />} />
+        <Route path='/bloomandboxes' element={<BloomAndBubbles />} />
+        <Route path='/funeral' element={<Funeral />} />
+        <Route path='/hatboxes' element={<HB />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/checkout' element={<Checkout />} />
+        <Route path='/success' element={<Success />} />
+        <Route path='/cancel' element={<Cancelled />} />
       </Routes>
       <CookieConsent />
+      <div className='banner-1'>
+        <h2>WEBSITE LAUNCH: 6TH MAY! PRE-ORDER NOW!</h2>
+      </div>
       <Cart />
       <Alert />
     </Router>

@@ -24,7 +24,7 @@ const ContactSection = () => {
           <FaClock className="contact-icon" />
           <div>
             <h4>Working hours</h4>
-            <p>Mon-Sun 9AM - 9PM</p>
+            <p>Mon-Sun 10AM - 9PM</p>
           </div>
         </div>
         <div className="contact-info-item">

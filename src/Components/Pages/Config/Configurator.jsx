@@ -230,16 +230,60 @@ const Configurator = () => {
                   {Array.isArray(value) ? (
                     <>
                       <div className='option-buttons'>
-                        {value.map((choice, index) => (
-                          <button
-                            key={index}
-                            className={`option-button ${
-                              selectedOptions[key] === choice ? "selected" : ""
-                            }`}
-                            onClick={() => handleOptionChange(key, choice)}>
-                            {choice === "gray" ? "Grey" : formatLabel(choice)}
-                          </button>
-                        ))}
+                        {value.map((choice, index) => {
+                          // Special handling for featherColors
+                          if (key === "featherColors") {
+                            const currentFeathers = (selectedOptions[key] || "")
+                              .split(" & ")
+                              .filter(Boolean);
+                            const isSelected = currentFeathers.includes(choice);
+
+                            const toggleFeather = () => {
+                              let updatedFeathers = [...currentFeathers];
+
+                              if (isSelected) {
+                                updatedFeathers = updatedFeathers.filter(
+                                  (c) => c !== choice
+                                );
+                              } else {
+                                if (updatedFeathers.length >= 2) return; // Limit to 2
+                                updatedFeathers.push(choice);
+                              }
+
+                              handleOptionChange(
+                                key,
+                                updatedFeathers.join(" & ")
+                              );
+                            };
+
+                            return (
+                              <button
+                                key={index}
+                                className={`option-button ${
+                                  isSelected ? "selected" : ""
+                                }`}
+                                onClick={toggleFeather}>
+                                {choice === "gray"
+                                  ? "Grey"
+                                  : formatLabel(choice)}
+                              </button>
+                            );
+                          }
+
+                          // Default one-selection behavior
+                          return (
+                            <button
+                              key={index}
+                              className={`option-button ${
+                                selectedOptions[key] === choice
+                                  ? "selected"
+                                  : ""
+                              }`}
+                              onClick={() => handleOptionChange(key, choice)}>
+                              {choice === "gray" ? "Grey" : formatLabel(choice)}
+                            </button>
+                          );
+                        })}
                       </div>
                       {missingFields.includes(key) && (
                         <p className='error-text'>Please select an option </p>

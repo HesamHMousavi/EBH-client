@@ -1,97 +1,71 @@
 .banner2 {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 15px;
-    height: 500px;
-    border-radius: 8px;
-    position: relative;
-    overflow: hidden;
-}
-
-/* Adding a shadow gradient from the left */
-.banner2::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 50%; /* Adjust width as needed */
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent);
-    pointer-events: none; /* Prevent interaction */
-}
-
-.banner2-overlay {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    width: 90%;
-    max-width: 1500px;
-    padding: 20px;
-    color: #ddd;
-    text-align: start;
-    height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+  height: 500px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Centering content */
 .banner2-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    z-index: 1; /* Ensures text is on top */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 1; /* Ensures text is on top */
 }
 
 .banner2-content h1 {
-    font-size: clamp(3.5rem, 4vw, 7rem);
-    font-weight: bold;
-    margin: 0;
-    text-align: left;
-    max-width: 500px;
-    width: 100%;
+  font-size: clamp(3.5rem, 4vw, 7rem);
+  font-weight: bold;
+  margin: 0;
+  text-align: left;
+  max-width: 500px;
+  width: 100%;
 }
 
 /* Button styles */
 .banner2-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .banner2-button {
-    background-color: var(--primary);
-    border: 1px solid var(--pink-light);
-    padding: 12px 20px;
-    font-size: 1rem;
-    color: var(--pink);
-    cursor: pointer;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-    min-width: 200px;
+  background-color: var(--primary);
+  border: 1px solid var(--pink-light);
+  padding: 12px 20px;
+  font-size: 1rem;
+  color: var(--pink);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  min-width: 200px;
 }
 
 .banner2-button:hover {
-    background-color: var(--pink-light);
-    color: var(--text);
+  background-color: var(--pink-light);
+  color: var(--text);
 }
 
 /* Responsive - Ensure text remains on top */
 @media (max-width: 768px) {
-    .banner2-overlay {
-        flex-direction: column-reverse; /* Moves buttons down, h1 stays on top */
-        text-align: center;
-        gap: 20px;
-    }
+  .banner2 {
+    height: 47vh !important;
+  }
 
-    .banner2-content h1 {
-        font-size: 3rem;
-    }
+  .banner2-content h1 {
+    font-size: 3rem;
+  }
 
-    .banner2-buttons {
-        width: 80%;
-        max-width: 300px;
-    }
+  .banner2-buttons {
+    width: 80%;
+    max-width: 300px;
+  }
 }
