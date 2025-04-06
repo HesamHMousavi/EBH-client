@@ -65,7 +65,7 @@ const App = () => {
       </Routes>
       <CookieConsent />
       <div className='banner-1'>
-        <h2>WEBSITE LAUNCH: 6TH MAY! PRE-ORDER NOW! {countdown}</h2>
+        <h2>WEBSITE LAUNCH: 6TH MAY! PRE-ORDER NOW - 10% OFF! {countdown}</h2>
         {/* <span className='loader-timer'></span> */}
       </div>
       <Cart />

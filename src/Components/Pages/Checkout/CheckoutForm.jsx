@@ -17,7 +17,7 @@ function CheckoutForm() {
   const [deliveryMethod, setDeliveryMethod] = useState("");
   const [shippingCost, setShippingCost] = useState(0);
   const [noDe, setDe] = useState(false);
-  const [collectionDate, setCollectionDate] = useState("");
+  const [collectionDate, setCollectionDate] = useState("2025-05-06");
   const [missingDate, setMissingDate] = useState(false);
   const [missingFields, setMissingFields] = useState([]);
   const [county, setCounty] = useState();

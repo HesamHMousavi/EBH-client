@@ -21,29 +21,35 @@ const BBGrid = () => {
     }
   }, [Products]);
   return prodLoading ? (
-    <div className="loader-con vh50">
-      <span className="loader"></span>
+    <div className='loader-con vh50'>
+      <span className='loader'></span>
     </div>
   ) : products?.length > 0 ? (
-    <div className="bouquet-grid-container">
-      <div className="bouquet-grid-2">
+    <div className='bouquet-grid-container'>
+      <div className='bouquet-grid-2'>
         {products?.map((product, index) => (
-          <div className="bouquet-card-2" key={index}>
+          <div className='bouquet-card-2' key={index}>
             <img
               src={product.image}
               alt={product.name}
-              className="bouquet-image-2"
+              className='bouquet-image-2'
             />
-            <div className="bouquet-info">
-              <h3 className="bouquet-name">{product.name}</h3>
+            <div className='bouquet-info'>
+              <h3 className='bouquet-name'>{product.name}</h3>
               {product.description && (
-                <p className="bouquet-description">
+                <p className='bouquet-description'>
                   {product.description.slice(0, 50)}
                   {product.description.length > 50 && "..."}
                 </p>
               )}
-              <div className="btn-con">
-                <p className="bouquet-price-2">£{product.price}</p>
+              <div className='btn-con'>
+                <p className='bouquet-price-2'>
+                  £{product.price}{" "}
+                  <span className='original-price'>
+                    {/* £{(product.price * 1.1).toFixed(2)} */}
+                    £{Math.round(product.price * 1.1)}
+                  </span>
+                </p>
                 <button onClick={() => onNav(product)}>Buy Now</button>
               </div>
             </div>
@@ -52,7 +58,7 @@ const BBGrid = () => {
       </div>
     </div>
   ) : (
-    <div className="not-av">
+    <div className='not-av'>
       <h1> Products Currently Not Available</h1>
     </div>
   );

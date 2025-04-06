@@ -198,6 +198,12 @@ input[type="date"]::-moz-focus-inner {
   }
 }
 
+.original-price {
+  text-decoration: line-through;
+  color: #a7a7a7;
+  font-size: 1rem;
+  margin-left: 4px;
+}
 /* HTML: <div class="loader"></div> */
 .loader-timer {
   margin-left: 1rem;
