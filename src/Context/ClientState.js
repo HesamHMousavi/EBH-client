@@ -120,6 +120,7 @@ export const ClientState = (props) => {
         return false;
       }
       const res = await axios.post(`/api/address/`, { number, postcode });
+      console.log(res);
       if (!res.data) SetAlert("Invalid Address", "warning");
       // Regular expression to match UK postcode pattern
       return res.data;

@@ -300,7 +300,8 @@ const Configurator = () => {
                       value={selectedOptions[key] || ""}
                       onChange={(e) => {
                         const value = e.target.value;
-                        if (/^[a-zA-Z]*$/.test(value)) {
+                        // Now allows letters and spaces:
+                        if (/^[a-zA-Z ]*$/.test(value)) {
                           handleOptionChange(key, value);
                         }
                       }}

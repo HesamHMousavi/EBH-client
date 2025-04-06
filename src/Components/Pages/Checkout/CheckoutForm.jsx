@@ -25,7 +25,7 @@ function CheckoutForm() {
   const [missingDelivery, setMissingDelivery] = useState(false);
   const [isBD, setISBD] = useState(false);
   const [shippingDetails, setShippingDetails] = useState({
-    type: "",
+    type: "Collection", // REMOVE THIS IN PRODUCTION
     date: getTomorrow(),
   });
 
@@ -68,6 +68,12 @@ function CheckoutForm() {
   };
 
   const handleDateChange = (e) => {
+    const selectedDate = e.target.value;
+    const minDate = "2025-05-06";
+    if (selectedDate < minDate) {
+      SetAlert("Collection only avaliable from 6th MAY", "warning");
+      return;
+    }
     setCollectionDate(e.target.value);
     setMissingDate(false);
 
@@ -167,6 +173,7 @@ function CheckoutForm() {
       ({ selectedOptions, id, price, name, image, ...rest }) => rest
     );
     setLoading(true);
+
     await CreateOrder({
       ...formFields,
       items: sanitizedProducts,
@@ -192,7 +199,7 @@ function CheckoutForm() {
     setLoading2(false);
     setCounty(res?.county ? res?.county : "");
     if (res?.pCode) setISBD(isBDPostcode(res?.pCode));
-    setDeliveryMethod("Collection") // REMOVE THIS IN PRODUCTION
+    setDeliveryMethod("Collection"); // REMOVE THIS IN PRODUCTION
     setFormFields((prev) => ({
       ...prev,
       address: res?.house ? res?.house : "",
@@ -376,8 +383,8 @@ function CheckoutForm() {
               type='date'
               value={collectionDate}
               onChange={handleDateChange}
-              min={getToday()}
-              max={getMaxDate()}
+              min='2025-05-06' // Fixed min date
+              // max={getMaxDate()}
               // className={missingDate ? "error-border" : ""}
             />
           </div>
